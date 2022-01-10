@@ -1,8 +1,13 @@
-package prac2;
+package prac3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import prac3.BusinessFlight;
+import prac3.EconomyFlight;
+import prac3.Flight;
+import prac3.Passenger;
 
 // testing with polymorphised code
 class AirPortTest2 {

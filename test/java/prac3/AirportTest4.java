@@ -1,17 +1,20 @@
-package prac2;
+package prac3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 
-//adding passenger only once
-class AirportTest5 {
+import prac3.BusinessFlight;
+import prac3.EconomyFlight;
+import prac3.Flight;
+import prac3.Passenger;
+
+
+// adding a premium flight
+class AirportTest4 {
 
 	@DisplayName("Given there is economy flight")
 	@Nested
@@ -42,20 +45,6 @@ class AirportTest5 {
 						() -> assertEquals(true, economyFlight.getPassengerSet().contains(mike)),
 						() -> assertEquals(true, economyFlight.removePassenger(mike)),
 						() -> assertEquals(0, economyFlight.getPassengerSet().size()));
-			}
-			
-			@DisplayName("Then you cannot add him to an economy flight more than once")
-			@RepeatedTest(5)
-			//@Disabled
-			public void testEconomyFlightUsualPassengerAddedOnlyOnce(RepetitionInfo repetitionInfo) {
-				for(int i=0; i<repetitionInfo.getCurrentRepetition();i++) {
-					economyFlight.addPassenger(mike);
-				}
-				assertAll("Verifying a usual passenger can be added to an economy flight only once",
-						() -> assertEquals(1,economyFlight.getPassengerSet().size()),
-						() -> assertTrue(economyFlight.getPassengerSet().contains(mike)),
-						() -> assertEquals(true, economyFlight.getPassengerSet().contains(mike))
-						);
 			}
 		}
 
@@ -118,50 +107,6 @@ class AirportTest5 {
 						() -> assertEquals(1, businessFlight.getPassengerSet().size()),
 						() -> assertEquals(false, businessFlight.removePassenger(john)),
 						() -> assertEquals(1, businessFlight.getPassengerSet().size()));
-			}
-		}
-
-	}
-	
-	@DisplayName("Given there is premium flight")
-	@Nested
-	class PremiumFlightTest {
-		private Flight premiumFlight;
-		private Passenger john;
-		private Passenger mike;
-
-		@BeforeEach
-		void setUp() {
-			premiumFlight = new PremiumFlight("3");
-			mike = new Passenger("mike", false);
-			john = new Passenger("john", true);
-		}
-
-		@Nested
-		@DisplayName("When we have usual passenger")
-		class UsualPassenger {
-			@Test
-			@DisplayName("Then you cannot add him or remove him from a premium flight")
-			public void testBusinessFlightUsualPassenger() {
-				assertAll("Verifying all the conditions for a usual passenger in business flight",
-						() -> assertEquals(false, premiumFlight.addPassenger(mike)),
-						() -> assertEquals(0, premiumFlight.getPassengerSet().size()),
-						() -> assertEquals(false, premiumFlight.removePassenger(mike)),
-						() -> assertEquals(0, premiumFlight.getPassengerSet().size()));
-			}
-		}
-
-		@Nested
-		@DisplayName("When we have VIP passsenger")
-		class VipPassenger {
-			@Test
-			@DisplayName("Then you can add him and remove from a premium flight")
-			public void testBusinessFlightVipPassenger() {
-				assertAll("Verifying all the conditions for a usual passenger in premium flight",
-						() -> assertEquals(true, premiumFlight.addPassenger(john)),
-						() -> assertEquals(1, premiumFlight.getPassengerSet().size()),
-						() -> assertEquals(true, premiumFlight.removePassenger(john)),
-						() -> assertEquals(0, premiumFlight.getPassengerSet().size()));
 			}
 		}
 

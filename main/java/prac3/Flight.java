@@ -1,4 +1,4 @@
-package prac2;
+package prac3;
 
 import java.util.ArrayList;
 import java.util.Collections;

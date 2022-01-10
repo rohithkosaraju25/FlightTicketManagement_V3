@@ -1,4 +1,4 @@
-package prac2;
+package prac3;
 
 public class EconomyFlight extends Flight{
 	public EconomyFlight(String id) {

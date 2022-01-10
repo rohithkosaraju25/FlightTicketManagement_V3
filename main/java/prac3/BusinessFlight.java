@@ -1,23 +1,20 @@
-package prac2;
+package prac3;
 
-public class PremiumFlight extends Flight {
-
-	public PremiumFlight(String id) {
+public class BusinessFlight extends Flight {
+	public BusinessFlight(String id) {
 		super(id);
 	}
 
 	@Override
 	public boolean addPassenger(Passenger passenger) {
-		if(passenger.isVip())
+		if(passenger.isVip()) {
 			return passengerSet.add(passenger);
+		}
 		return false;
 	}
 
 	@Override
 	public boolean removePassenger(Passenger passenger) {
-		if(passenger.isVip())
-			return passengerSet.remove(passenger);
 		return false;
 	}
-
 }
